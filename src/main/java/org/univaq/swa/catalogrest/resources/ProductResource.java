@@ -104,7 +104,7 @@ public class ProductResource {
     //11b. Inserimento (o spostamento) di un prodotto in una sezione.", description = "", security = {
     @PUT
     @Path("/section")
-    @Consumes({"application/json"})
+    @Consumes({"application/json","text/plain"})
     @Logged
     public Response moveProductToSection2(String sectioncode) throws NotFoundException, DatabaseException {
         product_business.assignProductToSection(product.getCodice(), sectioncode);

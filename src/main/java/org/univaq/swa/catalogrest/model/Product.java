@@ -1,5 +1,9 @@
 package org.univaq.swa.catalogrest.model;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product {
 
     private String codice = null;
@@ -7,7 +11,22 @@ public class Product {
     private Double prezzo = null;
     private Boolean disponibile = true;
     private String descrizioneBreve = null;
-    private ProductDetails dettagli = new ProductDetails();
+
+    //
+    private String descrizioneLunga = null;
+    private File immagine = null;
+    private List<String> ingredienti = new ArrayList<String>();
+    private List<String> allergeni = new ArrayList<String>();
+    private String modalitaConservazione = null;
+    private String modalitaPreparazione = null;
+    private String origine = null;
+    private List<String> etichette = new ArrayList<String>();
+
+    //
+    private Double kcal = null;
+    private Double grassi = null;
+    private Double carboidrati = null;
+    private Double proteine = null;
 
     public Product() {
     }
@@ -82,17 +101,177 @@ public class Product {
         this.descrizioneBreve = descrizioneBreve;
     }
 
+    //////////
+    
     /**
-     * @return the dettagli
+     * @return the descrizioneLunga
      */
-    public ProductDetails getDettagli() {
-        return dettagli;
+    public String getDescrizioneLunga() {
+        return descrizioneLunga;
     }
 
     /**
-     * @param dettagli the dettagli to set
+     * @param descrizioneLunga the descrizioneLunga to set
      */
-    public void setDettagli(ProductDetails dettagli) {
-        this.dettagli = dettagli;
+    public void setDescrizioneLunga(String descrizioneLunga) {
+        this.descrizioneLunga = descrizioneLunga;
     }
+
+    /**
+     * @return the immagine
+     */
+    public File getImmagine() {
+        return immagine;
+    }
+
+    /**
+     * @param immagine the immagine to set
+     */
+    public void setImmagine(File immagine) {
+        this.immagine = immagine;
+    }
+
+    /**
+     * @return the ingredienti
+     */
+    public List<String> getIngredienti() {
+        return ingredienti;
+    }
+
+    /**
+     * @param ingredienti the ingredienti to set
+     */
+    public void setIngredienti(List<String> ingredienti) {
+        this.ingredienti = ingredienti;
+    }
+
+    /**
+     * @return the allergeni
+     */
+    public List<String> getAllergeni() {
+        return allergeni;
+    }
+
+    /**
+     * @param allergeni the allergeni to set
+     */
+    public void setAllergeni(List<String> allergeni) {
+        this.allergeni = allergeni;
+    }
+
+    /**
+     * @return the modalitaConservazione
+     */
+    public String getModalitaConservazione() {
+        return modalitaConservazione;
+    }
+
+    /**
+     * @param modalitaConservazione the modalitaConservazione to set
+     */
+    public void setModalitaConservazione(String modalitaConservazione) {
+        this.modalitaConservazione = modalitaConservazione;
+    }
+
+    /**
+     * @return the modalitaPreparazione
+     */
+    public String getModalitaPreparazione() {
+        return modalitaPreparazione;
+    }
+
+    /**
+     * @param modalitaPreparazione the modalitaPreparazione to set
+     */
+    public void setModalitaPreparazione(String modalitaPreparazione) {
+        this.modalitaPreparazione = modalitaPreparazione;
+    }
+
+    /**
+     * @return the origine
+     */
+    public String getOrigine() {
+        return origine;
+    }
+
+    /**
+     * @param origine the origine to set
+     */
+    public void setOrigine(String origine) {
+        this.origine = origine;
+    }
+
+    /**
+     * @return the etichette
+     */
+    public List<String> getEtichette() {
+        return etichette;
+    }
+
+    /**
+     * @param etichette the etichette to set
+     */
+    public void setEtichette(List<String> etichette) {
+        this.etichette = etichette;
+    }
+
+    //////////
+    
+    
+    /**
+     * @return the kcal
+     */
+    public Double getKcal() {
+        return kcal;
+    }
+
+    /**
+     * @param kcal the kcal to set
+     */
+    public void setKcal(Double kcal) {
+        this.kcal = kcal;
+    }
+
+    /**
+     * @return the grassi
+     */
+    public Double getGrassi() {
+        return grassi;
+    }
+
+    /**
+     * @param grassi the grassi to set
+     */
+    public void setGrassi(Double grassi) {
+        this.grassi = grassi;
+    }
+
+    /**
+     * @return the carboidrati
+     */
+    public Double getCarboidrati() {
+        return carboidrati;
+    }
+
+    /**
+     * @param carboidrati the carboidrati to set
+     */
+    public void setCarboidrati(Double carboidrati) {
+        this.carboidrati = carboidrati;
+    }
+
+    /**
+     * @return the proteine
+     */
+    public Double getProteine() {
+        return proteine;
+    }
+
+    /**
+     * @param proteine the proteine to set
+     */
+    public void setProteine(Double proteine) {
+        this.proteine = proteine;
+    }
+
 }

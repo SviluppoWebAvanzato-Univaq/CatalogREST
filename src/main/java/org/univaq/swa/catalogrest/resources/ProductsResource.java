@@ -59,7 +59,7 @@ public class ProductsResource {
     //6a. Calcolo numero prodotti globale
     @GET
     @Path("/count")
-    @Produces({"application/json"})
+    @Produces({"application/json","text/plain"})
     public Response getProductCount() throws DatabaseException {
         return Response.ok(product_business.getNumberOfProducts(null)).build();
     }
@@ -77,7 +77,7 @@ public class ProductsResource {
         //solo per debug...
         System.out.println(securityContext.getUserPrincipal().getName());
         System.out.println(requestcontext.getProperty("token"));
-
+        
         String codice = product_business.addProduct(product);
         URI uri = uriinfo.getBaseUriBuilder()
                 .path(getClass())

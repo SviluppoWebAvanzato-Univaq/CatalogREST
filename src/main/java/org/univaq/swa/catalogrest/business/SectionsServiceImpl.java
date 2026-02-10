@@ -51,7 +51,7 @@ public class SectionsServiceImpl implements SectionsService {
         List<Section> result = new ArrayList<>();
         int n = random.nextInt(1, 10);
         for (int i = 0; i < n; ++i) {
-            result.add(createDummySection("S-" + createUID()));
+            result.add(createDummySection(createUID()));
         }
         return result;
     }

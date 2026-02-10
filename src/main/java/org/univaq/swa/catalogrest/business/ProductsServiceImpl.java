@@ -97,9 +97,9 @@ public class ProductsServiceImpl implements ProductsService {
         e.setDisponibile(Boolean.TRUE);
         e.setNome("Prodotto " + code);
         e.setPrezzo(Math.round(random.nextDouble() * 100.0) / 100.0);
-        e.getDettagli().setModalitaConservazione("Pronto al consumo");
-        e.getDettagli().getValoriNutrizionali().setKcal(10.0);
-        e.getDettagli().setEtichette(List.of("A", "B"));
+        e.setModalitaConservazione("Pronto al consumo");
+        e.setKcal(10.0);
+        e.setEtichette(List.of("A", "B"));
         return e;
     }
 

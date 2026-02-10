@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import jakarta.ws.rs.ext.ContextResolver;
 import jakarta.ws.rs.ext.Provider;
+import org.univaq.swa.catalogrest.model.Product;
 
 /**
  *
@@ -29,6 +30,8 @@ public class ObjectMapperContextResolver implements ContextResolver<ObjectMapper
         //abilitiamo una feature nuova...
         m.enable(SerializationFeature.INDENT_OUTPUT);
         SimpleModule customSerializer = new SimpleModule("CustomSerializersModule");
+        customSerializer.addSerializer(Product.class, new ProductSerializer());
+        customSerializer.addDeserializer(Product.class, new ProductDeserializer());
 
         //
         m.registerModule(customSerializer);

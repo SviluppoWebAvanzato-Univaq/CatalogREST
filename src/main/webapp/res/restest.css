@@ -32,13 +32,11 @@ body {
     display: block;
 }
 
-.restest .output {
+.restest .description, .restest .parameters, .restest .payload, .restest .request, .restest .output {
     font-size: 70%;
-    word-break: break-all;
 }
 
-.restest .request {
-    font-size: 70%;
+.restest .output, .restest .request  {
     word-break: break-all;
 }
 

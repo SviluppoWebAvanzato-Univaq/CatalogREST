@@ -61,7 +61,7 @@ public class SectionsResource {
 
     //non ci sono metodi specificati, quindi per JAX-RS si tratta
     //della restituzione di una sotto-risorsa
-    @Path("/{sectioncode}")
+    @Path("/{sectioncode: [a-zA-Z0-9]+}")
     public SectionResource getSection(@PathParam("sectioncode") String code) throws DatabaseException {
         try {
             return new SectionResource(section_business.getSection(code));

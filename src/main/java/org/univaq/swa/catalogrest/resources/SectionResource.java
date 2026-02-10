@@ -9,6 +9,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriInfo;
+import java.net.URI;
 import org.univaq.swa.catalogrest.exceptions.DatabaseException;
 import org.univaq.swa.catalogrest.exceptions.NotFoundException;
 import org.univaq.swa.catalogrest.business.ProductsService;
@@ -48,7 +49,7 @@ public class SectionResource {
     //3. Aggiornamento descrizione di una sezione
     @PUT
     @Path("/description")
-    @Consumes({"application/json"})
+    @Consumes({"application/json","text/plain"})
     public Response updateSectionDescription(String description) throws NotFoundException, DatabaseException {
         section.setDescrizione(description);
         section_business.updateSection(section.getCodice(), section);
@@ -68,26 +69,31 @@ public class SectionResource {
     @GET
     @Path("/products/available")
     @Produces({"application/json"})
-    public Response getProdottiDisponibiliSection(@Context UriInfo uriinfo) throws DatabaseException {
+    public Response getSectionProductsAvailable(@Context UriInfo uriinfo) throws DatabaseException {
         return Response.ok(ProductsResource.mapProductsToBase(product_business.getProducts(null, section.getCodice(), true, null, null, null, null), uriinfo)).build();
     }
 
-    //6a. Calcolo numero prodotti per sezione
+    //6b. Calcolo numero prodotti per sezione
     @GET
     @Path("/products/count")
-    @Produces({"application/json"})
+    @Produces({"application/json","text/plain"})
     public Response getSectionProductCount() throws DatabaseException {
         //poco efficiente, ma se la logica non ci fornisce il metodo giusto...
         return Response.ok(product_business.getProducts(null, section.getCodice(), null, null, null, null, null).size()).build();
     }
 
-    //11a. Inserimento (o spostamento) di un prodotto in una sezione.", description = "", security = {
+    //11a. Inserimento (o spostamento) di un prodotto in una sezione
     @POST
     @Path("/products")
-    @Consumes({"application/json"})
+    @Consumes({"application/json","text/plain"})
     @Logged
-    public Response moveProductToSection1(String productcode) throws NotFoundException, DatabaseException {
+    public Response moveProductToSection1(String productcode, @Context UriInfo uriinfo) throws NotFoundException, DatabaseException {
         product_business.assignProductToSection(productcode, section.getCodice());
-        return Response.noContent().build();
+        //dovendo ritornare qualcosa, restituiamo la URL del prodotto spostato
+        URI p = uriinfo.getBaseUriBuilder()
+                .path(ProductsResource.class)
+                .path(ProductsResource.class, "getProduct")
+                .build(productcode);
+        return Response.created(p).build();
     }
 }

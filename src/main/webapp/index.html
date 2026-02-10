@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>JAX-RS EventsREST application (JakartaEE 10)</title>
+        <title>JAX-RS ProductsREST application (JakartaEE 10)</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="res/restest.css"/>
@@ -17,6 +17,7 @@
         <table class="restest" width="100%">
             <thead>
                 <tr>
+                    <td>Description</td>
                     <th>Path</th>
                     <th>Method</th>
                     <th>Parameters</th>
@@ -29,182 +30,222 @@
             <tbody>
 
 
-                <tr data-rest-test-auth data-rest-test-target data-rest-test-method="post" data-rest-test-url="rest/events"
+                <tr data-rest-test data-rest-test-target data-rest-test-url="rest/sections">
+                    <td class="description">1. Lettura lista sezioni ("radice" catalogo)</td>
+                    <td class="url">/sections</td> <!-- path -->
+                    <td class="method">GET</td> <!-- method -->
+                    <td class="parameters"></td> <!-- parameters -->
+                    <td class="payload"></td> <!-- payload -->
+                    <td class="authentication"></td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->                                       
+                </tr>
+
+                <tr data-rest-test data-rest-test-target data-rest-test-url="rest/sections/frutta">
+                    <td class="description">2. Lettura dettagli di una sezione</td>
+                    <td class="url">/sections/{code}</td> <!-- path -->
+                    <td class="method">GET</td> <!-- method -->
+                    <td class="parameters">{code}: section code ([a-zA-Z0-9]+)</td> <!-- parameters -->
+                    <td class="payload"></td> <!-- payload -->
+                    <td class="authentication"></td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->
+                </tr>
+
+                <tr data-rest-test-auth data-rest-test-target data-rest-test-method="put" 
+                    data-rest-test-url="rest/sections/frutta/description"
+                    data-rest-test-status="204"
+                    data-rest-test-content-type="text/plain"
+                    data-rest-test-payload='Frutta e verdura'>
+
+                    <td class="description">3. Aggiornamento descrizione di una sezione</td>
+                    <td class="url">/sections/{code}/description</td> <!-- path -->
+                    <td class="method">PUT</td> <!-- method -->
+                    <td class="parameters">{code}: section code ([a-zA-Z0-9]+)</td> <!-- parameters -->
+                    <td class="payload">Section description</td> <!-- payload -->
+                    <td class="authentication">Bearer token</td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->
+                </tr>
+
+                <tr  data-rest-test-target data-rest-test-method="get" data-rest-test-url="rest/sections/frutta/products"
+                     data-rest-test-status="200"                    >
+
+                    <td class="description">4. Lettura prodotti di una sezione</td>
+                    <td class="url">/sections/{code}/products</td> <!-- path -->
+                    <td class="method">GET</td> <!-- method -->
+                    <td class="parameters">{code}: section code ([a-zA-Z0-9]+)</td> <!-- parameters -->
+                    <td class="payload"></td> <!-- payload -->
+                    <td class="authentication"></td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->
+                </tr>
+
+                <tr  data-rest-test-target data-rest-test-method="get" data-rest-test-url="rest/sections/frutta/products/available"
+                     data-rest-test-status="200"                    >
+
+                    <td class="description">5. Lettura dei soli prodotti di una sezione attualmente disponibili</td>
+                    <td class="url">/sections/{code}/products/available</td> <!-- path -->
+                    <td class="method">GET</td> <!-- method -->
+                    <td class="parameters">{code}: section code ([a-zA-Z0-9]+)</td> <!-- parameters -->
+                    <td class="payload"></td> <!-- payload -->
+                    <td class="authentication"></td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->
+                </tr>
+
+
+                <tr data-rest-test 
+                    data-rest-test-accept="text/plain"
+                    data-rest-test-target data-rest-test-url="rest/products/count">
+                    
+                    <td class="description">6a. Calcolo numero prodotti globale</td>
+                    <td class="url">/products/count</td> <!-- path -->
+                    <td class="method">GET</td> <!-- method -->
+                    <td class="parameters"></td> <!-- parameters -->
+                    <td class="payload"></td> <!-- payload -->
+                    <td class="authentication"></td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->
+                </tr>
+
+                <tr data-rest-test 
+                    data-rest-test-target data-rest-test-url="rest/sections/frutta/products/count">
+                    <td class="description">6b. Calcolo numero prodotti per sezione</td>
+                    <td class="url">/sections/{code}/products/count</td> <!-- path -->
+                    <td class="method">GET</td> <!-- method -->
+                    <td class="parameters">{code}: section code ([a-zA-Z0-9]+)</td> <!-- parameters -->
+                    <td class="payload"></td> <!-- payload -->
+                    <td class="authentication"></td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->
+                </tr>
+
+                <tr data-rest-test data-rest-test-target data-rest-test-url="rest/products/P-123">
+                    <td class="description">7. Lettura dettagli di un prodotto</td>
+                    <td class="url">/products/{code}</td> <!-- path -->
+                    <td class="method">GET</td> <!-- method -->
+                    <td class="parameters">{code}: product code (P-[a-zA-Z0-9]+)</td> <!-- parameters -->
+                    <td class="payload"></td> <!-- payload -->
+                    <td class="authentication"></td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->
+                </tr>
+
+                <tr data-rest-test-auth data-rest-test-target data-rest-test-method="post" data-rest-test-url="rest/products"
                     data-rest-test-content-type="application/json" data-rest-test-status="201"
-                    data-rest-test-payload=' { "uid" : "IDabc", "summary" : "Event IDabc", "location" : null, "start" : "2024-04-10T13:48:48+02:00", "end" : "2024-04-10T13:48:48.295207+02:00", "categories" : null, "attachment" : "Y2lhbyBhIHR1dHRp", "participants" : [ { "name" : "Pinco Pallino #0", "email" : "pinco.pallino0@univaq.it" }, { "name" : "Pinco Pallino #1", "email" : "pinco.pallino1@univaq.it" } ], "recurrence" : { "count" : null, "interval" : 2, "until" : "2024-06-10T13:48+02:00", "frequency" : "WEEKLY" } }'>
-                    <td>events</td>
-                    <td>POST</td>
-                    <td></td>
-                    <td>Event object (JSON)</td>
-                    <td>Bearer token</td>
-                    <td class="request"></td>
-                    <td  class="output"></td>
+                    data-rest-test-payload='{"codice": "P-123", "nome": "Prodotto P-123", "prezzo": 0.84, "disponibile": true, "descrizioneBreve": "Questo è il prodotto P-123", "dettagli": {"descrizioneLunga": null, "immagine": null, "ingredienti": [], "allergeni": [], "valoriNutrizionali": {"kcal": 10.0, "grassi": null, "carboidrati": null, "proteine": null}, "modalitaConservazione": "Pronto al consumo", "modalitaPreparazione": null, "origine": null, "etichette": ["A", "B"]}}'>
+                    <td class="description">8. Inserimento di un nuovo prodotto</td>
+                    <td class="url">/products</td> <!-- path -->
+                    <td class="method">POST</td> <!-- method -->
+                    <td class="parameters"></td> <!-- parameters -->
+                    <td class="payload">Product object (JSON)</td> <!-- payload -->
+                    <td class="authentication">Bearer token</td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->
                 </tr>
 
-                <tr data-rest-test data-rest-test-target data-rest-test-url="rest/events?from=2024-02-01T00:00Z&amp;to=2024-03-01T00:00Z&amp;cat=work,personal">
-                    <td>/events?from={a}&amp;to={b}&amp;cat={c}</td>
-                    <td>GET</td>
-                    <td>{a},{b}: ISO OFFSET DATETIME, {c}: comma-separated list</td>
-                    <td></td>
-                    <td></td>
-                    <td class="request"></td>
-                    <td  class="output">Filtered event list</td>
-                </tr>
-
-                <tr data-rest-test data-rest-test-target data-rest-test-url="rest/events/current?cat=work,personal">
-                    <td>/events/current?cat={c}</td>
-                    <td>GET</td>
-                    <td>{c}: comma-separated list</td>
-                    <td></td>
-                    <td></td>
-                    <td class="request"></td>
-                    <td  class="output">Lista eventi correnti</td>
-                </tr>
-
-
-                <tr data-rest-test data-rest-test-accept="text/plain" data-rest-test-target data-rest-test-url="rest/events/count?from=2024-02-01T00:00Z&amp;to=2024-03-01T00:00Z&amp;cat=work,personal">
-                    <td>/events/count?from={a}&amp;to={b}&amp;cat={c}</td>
-                    <td>GET</td>
-                    <td>{a},{b}: ISO OFFSET DATETIME, {c}: comma-separated list</td>
-                    <td></td>
-                    <td></td>
-                    <td class="request"></td>
-                    <td  class="output">Numero eventi filtrati (testo)</td>
-                </tr>
-                
-                <tr data-rest-test  data-rest-test-accept="application/json" data-rest-test-target data-rest-test-url="rest/events/count?from=2024-02-01T00:00Z&amp;to=2024-03-01T00:00Z&amp;cat=work,personal">
-                    <td>/events/count?from={a}&amp;to={b}&amp;cat={c}</td>
-                    <td>GET</td>
-                    <td>{a},{b}: ISO OFFSET DATETIME, {c}: comma-separated list</td>
-                    <td></td>
-                    <td></td>
-                    <td class="request"></td>
-                    <td  class="output">Numero eventi filtrati (JSON)</td>
-                </tr>
-                
-                <tr data-rest-test data-rest-test-status="406" data-rest-test-accept="application/pdf" data-rest-test-target data-rest-test-url="rest/events/count?from=2024-02-01T00:00Z&amp;to=2024-03-01T00:00Z&amp;cat=work,personal">
-                    <td>/events/count?from={a}&amp;to={b}&amp;cat={c}</td>
-                    <td>GET</td>
-                    <td>{a},{b}: ISO OFFSET DATETIME, {c}: comma-separated list</td>
-                    <td></td>
-                    <td></td>
-                    <td class="request"></td>
-                    <td  class="output">Numero eventi filtrati (PDF)</td>
-                </tr>
-
-
-
-                <tr data-rest-test data-rest-test-target data-rest-test-url="rest/events/IDabc">
-                    <td>events/{uid}</td>
-                    <td>GET</td>
-                    <td>{uid}: ID[a-z0-9]+</td>
-                    <td></td>
-                    <td></td>
-                    <td class="request"></td>
-                    <td  class="output">Evento completo</td>
-                </tr>
-
-                <tr data-rest-test-auth data-rest-test-target data-rest-test-method="PUT" data-rest-test-url="rest/events/IDabc"
+                <tr data-rest-test-auth data-rest-test-target data-rest-test-method="PUT" data-rest-test-url="rest/products/P-123"
                     data-rest-test-content-type="application/json" data-rest-test-status="204"
-                    data-rest-test-payload='{ "uid" : "IDabc", "summary":"Test", "start":"2024-03-10T17:04:20Z", "end":"2024-03-10T17:04:21Z" }'>
-                    <td>events/{uid}</td>
-                    <td>PUT</td>
-                    <td>{uid}: ID[a-z0-9]+</td>
-                    <td>Event object (JSON)</td>
-                    <td>Bearer token</td>
-                    <td class="request"></td>
-                    <td  class="output"></td>
+                    data-rest-test-payload='{"codice": "P-123", "nome": "Prodotto P-123", "prezzo": 0.84, "disponibile": true, "descrizioneBreve": "Questo è il prodotto P-123", "dettagli": {"descrizioneLunga": null, "immagine": null, "ingredienti": [], "allergeni": [], "valoriNutrizionali": {"kcal": 10.0, "grassi": null, "carboidrati": null, "proteine": null}, "modalitaConservazione": "Pronto al consumo", "modalitaPreparazione": null, "origine": null, "etichette": ["A", "B"]}}'>
+
+                    <td class="description">9. Modifica (anche parziale) di un prodotto</td>
+                    <td class="url">/products/{code}</td> <!-- path -->
+                    <td class="method">PUT</td> <!-- method -->
+                    <td class="parameters">{code}: product code (P-[a-zA-Z0-9]+)</td> <!-- parameters -->
+                    <td class="payload">Product object (JSON)</td> <!-- payload -->
+                    <td class="authentication">Bearer token</td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->
                 </tr>
 
-                <tr data-rest-test-auth data-rest-test-target data-rest-test-method="delete" data-rest-test-status="204" data-rest-test-url="rest/events/IDabc">
-                    <td>events/{uid}</td>
-                    <td>DELETE</td>
-                    <td>{uid}: ID[a-z0-9]+</td>
-                    <td></td>
-                    <td>Bearer token</td>
-                    <td class="request"></td>
-                    <td  class="output"></td>
+                <tr data-rest-test-auth data-rest-test-target data-rest-test-method="delete" data-rest-test-status="204" data-rest-test-url="rest/products/P-123">
+                    <td class="description">10. Eliminazione di un prodotto</td>
+                    <td class="url">/products/{code}</td> <!-- path -->
+                    <td class="method">DELETE</td> <!-- method -->
+                    <td class="parameters"></td> <!-- parameters -->
+                    <td class="payload"></td> <!-- payload -->
+                    <td class="authentication">Bearer token</td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->
+                </tr>
+
+                <tr data-rest-test-auth data-rest-test-target data-rest-test-method="post" data-rest-test-url="rest/sections/frutta/products"
+                    data-rest-test-content-type="application/json" 
+                    data-rest-test-status="201"
+                    data-rest-test-payload='P-123'>
+                    <td class="description">11a. Inserimento (o spostamento) di un prodotto in una sezione.</td>
+                    <td class="url">/sections/{code}/products</td> <!-- path -->
+                    <td class="method">POST</td> <!-- method -->
+                    <td class="parameters">{code}: section code ([a-zA-Z0-9]+)</td> <!-- parameters -->
+                    <td class="payload">Product code</td> <!-- payload -->
+                    <td class="authentication">Bearer token</td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->
+                </tr>
+
+                <tr data-rest-test-auth data-rest-test-target data-rest-test-method="put" 
+                    data-rest-test-url="rest/products/P-123/section"
+                    data-rest-test-status="204"
+                    data-rest-test-content-type="text/plain"
+                    data-rest-test-payload='frutta'>
+
+                    <td class="description">11b. Inserimento (o spostamento) di un prodotto in una sezione.</td>
+                    <td class="url">/products/{code}/section</td> <!-- path -->
+                    <td class="method">PUT</td> <!-- method -->
+                    <td class="parameters">{code}: product code (P-[a-zA-Z0-9]+)</td> <!-- parameters -->
+                    <td class="payload">Section code</td> <!-- payload -->
+                    <td class="authentication">Bearer token</td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->
+                </tr>
+
+                <tr data-rest-test data-rest-test-target data-rest-test-url="rest/products?tag=bio,vegan&available=true">
+                    <td class="description">12. Ricerca di prodotti per codice e/o nome e/o tag e/o sezione e/o fascia di prezzo e/o disponibilità</td>
+                    <td class="url">/products?code={P}&amp;name={X}&amp;tag={A,B}&amp;available={Y}&amp;section={S}&amp;minPrice={U}&amp;maxPrice={V}&page={N}</td> <!-- path -->
+                    <td class="method">GET</td> <!-- method -->
+                    <td class="parameters">                        
+                            {X}: product name<br/>
+                            {A,B}: product tags<br/>
+                            {Y}: product availability (true, false)<br/>
+                            {S}: product section code<br/>
+                            {U}: product min price<br/>
+                            {V}: product max price<br/>
+                            {N}: product list page
+                    </td> <!-- parameters -->
+                    <td class="payload"></td> <!-- payload -->
+                    <td class="authentication"></td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->                                       
+                </tr>
+
+                <tr data-rest-test 
+                    data-rest-test-accept="image/png"
+                    data-rest-test-url="rest/products/P-123/image">
+                    <td class="description">13. Scaricamento immagine (binaria) di un prodotto</td>
+                    <td class="url">products/{code}/image</td> <!-- path -->
+                    <td class="method">GET</td> <!-- method -->
+                    <td class="parameters">{code}: product code (P-[a-zA-Z0-9]+)</td> <!-- parameters -->
+                    <td class="payload"></td> <!-- payload -->
+                    <td class="authentication"></td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output">Product (binary) image</td> <!-- response -->
                 </tr>
 
 
-                <tr data-rest-test-auth data-rest-test-target data-rest-test-method="put" data-rest-test-url="rest/events/IDabc/recurrence"
-                    data-rest-test-content-type="application/json" data-rest-test-status="204"
-                    data-rest-test-payload='{ "interval" : 2, "until" : "2024-05-15T18:55:22+02:00", "frequency" : "WEEKLY" }'>
-                    <td>events/{uid}/recurrence</td>
-                    <td>PUT</td>
-                    <td>{uid}: ID[a-z0-9]+</td>
-                    <td>Recurrence rule object (JSON)</td>
-                    <td>Bearer token</td>
-                    <td class="request"></td>
-                    <td  class="output"></td>
-                </tr>
-
-
-                <tr data-rest-test data-rest-test-url="rest/events/IDabc/attachment">
-                    <td>events/{uid}/attachment</td>
-                    <td>GET</td>
-                    <td>{uid}: ID[a-z0-9]+</td>
-                    <td></td>
-                    <td></td>
-                    <td class="request"></td>
-                    <td  class="output">Event (binary) attachment</td>
-                </tr>
-                
-                 <tr data-rest-test-auth data-rest-test-target data-rest-test-method="put" data-rest-test-url="rest/events/IDabc/attachment"
-                    data-rest-test-content-type="text/plain" data-rest-test-status="204"
+                <tr data-rest-test-auth data-rest-test-target data-rest-test-method="put" data-rest-test-url="rest/products/P-123/image"
+                    data-rest-test-content-type="image/png" data-rest-test-status="204"
                     data-rest-test-payload='payloadbinario'>
-                    <td>events/{uid}/attachment</td>
-                    <td>PUT</td>
-                    <td>{uid}: ID[a-z0-9]+</td>
-                    <td>Event (binary) attachment</td>
-                    <td>Bearer token</td>
-                    <td class="request"></td>
-                    <td  class="output"></td>
-                </tr>
 
-                <tr data-rest-test data-rest-test-target data-rest-test-url="rest/events/IDabc/participants">
-                    <td>events/{uid}/participants</td>
-                    <td>GET</td>
-                    <td>{uid}: ID[a-z0-9]+</td>
-                    <td></td>
-                    <td></td>
-                    <td class="request"></td>
-                    <td  class="output">Event participants list</td>
+                    <td class="description">14. Inserimento/Aggiornamento immagine (binaria) di un prodotto</td>
+                    <td class="url">/products/{code}/image</td> <!-- path -->
+                    <td class="method">PUT</td> <!-- method -->
+                    <td class="parameters">{code}: product code (P-[a-zA-Z0-9]+)</td> <!-- parameters -->
+                    <td class="payload">Product (binary) image</td> <!-- payload -->
+                    <td class="authentication">Bearer token</td> <!-- authentication -->
+                    <td class="request"></td> <!-- request -->
+                    <td  class="output"></td> <!-- response -->
                 </tr>
-
-                <tr data-rest-test-auth data-rest-test-target data-rest-test-method="post" data-rest-test-url="rest/events/IDabc/participants"
-                    data-rest-test-content-type="application/json" data-rest-test-status="201"
-                    data-rest-test-payload='{ "name" : "Pinco Pallino #0", "email" : "pinco.pallino0@univaq.it" }'>
-                    <td>events/{uid}/participants</td>
-                    <td>POST</td>
-                    <td>{uid}: ID[a-z0-9]+</td>
-                    <td>Participant object (JSON)</td>
-                    <td>Bearer token</td>
-                    <td class="request"></td>
-                    <td  class="output"></td>
-                </tr>
-
-                <tr data-rest-test-auth data-rest-test-target data-rest-test-method="DELETE" data-rest-test-url="rest/events/IDabc/participants/pinco@pllino.com"  data-rest-test-status="204">
-                    <td>events/{uid}/participants/{partid}</td>
-                    <td>DELETE</td>
-                    <td>{uid}: ID[a-z0-9]+, {partid}: participant email</td>
-                    <td></td>
-                    <td>Bearer token</td>
-                    <td class="request"></td>
-                    <td  class="output"></td>
-                </tr>
-
-                <tr data-rest-test-target data-rest-test-method="OPTIONS" data-rest-test-url="rest/events/IDabc/participants"
-                    data-rest-test-status="200">
-                    <td>events/{uid}/participants</td>
-                    <td>OPTIONS</td>
-                    <td>{uid}: ID[a-z0-9]+</td>
-                    <td></td>
-                    <td></td>
-                    <td class="request"></td>
-                    <td  class="output"></td>
-                </tr>
-
 
             </tbody>
         </table>
