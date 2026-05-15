@@ -37,7 +37,7 @@ public class ProductResource {
         this.product = e;
     }
 
-    //10. Eliminazione di un prodotto", description = "", security = {    
+    //10. Eliminazione di un prodotto
     @DELETE
     @Logged
     public Response deleteProduct() throws NotFoundException, DatabaseException {
@@ -54,7 +54,7 @@ public class ProductResource {
         return Response.ok(product).build();
     }
 
-    //9. Modifica (anche parziale) di un prodotto", description = "", security = {
+    //9. Modifica (anche parziale) di un prodotto
     //@PATCH non funziona :)
     @PUT
     @Consumes({"application/json"})
@@ -66,7 +66,7 @@ public class ProductResource {
 
     }
 
-    //13. Scaricamento immagine (binaria) di un prodotto", description = "", tags={ "Prodotti" })
+    //13. Scaricamento immagine (binaria) di un prodotto
     @GET
     @Path("/image")
     @Produces({"image/png"})
@@ -86,7 +86,7 @@ public class ProductResource {
                 .build();
     }
 
-    //14. Inserimento/Aggiornamento immagine (binaria) di un prodotto", description = "", security = {
+    //14. Inserimento/Aggiornamento immagine (binaria) di un prodotto.
     @PUT
     @Path("/image")
     @Consumes({"image/png"})
@@ -101,7 +101,7 @@ public class ProductResource {
         return Response.noContent().build();
     }
 
-    //11b. Inserimento (o spostamento) di un prodotto in una sezione.", description = "", security = {
+    //11b. Inserimento (o spostamento) di un prodotto in una sezione.
     @PUT
     @Path("/section")
     @Consumes({"application/json","text/plain"})

@@ -64,7 +64,7 @@ public class ProductsResource {
         return Response.ok(product_business.getNumberOfProducts(null)).build();
     }
 
-    //8. Inserimento di un nuovo prodotto.", description = "", security = {
+    //8. Inserimento di un nuovo prodotto.
     @POST
     @Consumes({"application/json"})
     @Logged
