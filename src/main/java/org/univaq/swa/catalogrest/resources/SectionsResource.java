@@ -54,7 +54,7 @@ public class SectionsResource {
     //1. Lettura lista sezioni ("radice" catalogo)
     @GET
     @Produces({"application/json"})
-    //12. Ricerca di prodotti per codice e/o nome e/o tag e/o sezione e/o fascia di prezzo e/o disponibilità
+    //1. Lettura lista sezioni ("radice" catalogo)
     public Response getSections(@Context UriInfo uriinfo) throws DatabaseException {
         return Response.ok(mapSectionsToBase(section_business.getSections(), uriinfo)).build();
     }
